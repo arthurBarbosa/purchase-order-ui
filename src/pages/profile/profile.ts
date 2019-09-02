@@ -34,6 +34,7 @@ export class ProfilePage {
         response => {
           this.cliente = response;
           //buscar imagem
+          this.getImageIfExists();
         },
         error => {}
       );
@@ -43,9 +44,7 @@ export class ProfilePage {
   getImageIfExists() {
     this.clienteService.getImageFromBucket(this.cliente.id).subscribe(
       response => {
-        this.cliente.imageUrl = `${API_CONFIG.baseUrl}/cp${
-          this.cliente.id
-        }.jpg`;
+        this.cliente.imageUrl = `${API_CONFIG.baseUrl}/cp${this.cliente.id}.jpg`;
       },
       error => {}
     );
