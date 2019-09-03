@@ -49,4 +49,9 @@ export class HomePage {
     );
     console.log(this.creds);
   }
+
+  signup() {
+    console.log("passou ");
+    this.navCtrl.push("SignupPage");
+  }
 }
