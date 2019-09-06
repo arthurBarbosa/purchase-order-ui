@@ -30,7 +30,7 @@
       margin-left
     >
       Valor inválido
-      <ion-list radio-group formControlName="tipo">
+      <ion-list radio-group formControlName="tipoPessoa">
         <ion-list-header>
           Tipo de cliente
         </ion-list-header>
@@ -143,7 +143,7 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>Cidade*</ion-label>
-      <ion-select formControlName="cidadeId">
+      <ion-select formControlName="cidadeid">
         <ion-option *ngFor="let cidade of cidades" [value]="cidade.id">{{
           cidade.nome
         }}</ion-option>
