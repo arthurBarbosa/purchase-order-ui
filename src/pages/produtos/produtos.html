@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CategoriasPage page.
+  Generated template for the ProdutosPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,20 +7,20 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"> </ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>categorias</ion-title>
+    <ion-title>Produtos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- List of Text Items -->
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="showProdutos()">
+    <button ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
-        <img src="{{ bucket }}/cat{{ item.id }}.jpg" alt="" />
+        <img [src]="item.imageUrl || 'assets/imgs/prod.jpg'" />
       </ion-thumbnail>
       <h2>{{ item.nome }}</h2>
+      <p>{{ item.preco | currency }}</p>
     </button>
   </ion-list>
 </ion-content>
