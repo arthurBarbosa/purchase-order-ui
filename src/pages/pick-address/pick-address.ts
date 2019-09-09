@@ -1,12 +1,11 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { EnderecoDTO } from "../../models/endereco.dto";
 import { StorageService } from "../../services/storage.service";
-import { ClienteDTO } from "../../models/cliente.dto";
 import { ClienteService } from "../../services/domain/cliente.service";
-import { API_CONFIG } from "../../config/api.config";
 
 /**
- * Generated class for the ProfilePage page.
+ * Generated class for the PickAddressPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,11 +13,11 @@ import { API_CONFIG } from "../../config/api.config";
 
 @IonicPage()
 @Component({
-  selector: "page-profile",
-  templateUrl: "profile.html"
+  selector: "page-pick-address",
+  templateUrl: "pick-address.html"
 })
-export class ProfilePage {
-  cliente: ClienteDTO;
+export class PickAddressPage {
+  items: EnderecoDTO[];
 
   constructor(
     public navCtrl: NavController,
@@ -32,9 +31,7 @@ export class ProfilePage {
     if (localUser && localUser.email) {
       this.clienteService.findByEmail(localUser.email).subscribe(
         response => {
-          this.cliente = response as ClienteDTO;
-          //buscar imagem
-          this.getImageIfExists();
+          this.items = response["enderecos"];
         },
         error => {
           if (error.status == 403) {
@@ -42,17 +39,6 @@ export class ProfilePage {
           }
         }
       );
-    } else {
-      this.navCtrl.setRoot("HomePage");
     }
-  }
-
-  getImageIfExists() {
-    this.clienteService.getImageFromBucket(this.cliente.id).subscribe(
-      response => {
-        this.cliente.imageUrl = `${API_CONFIG.baseUrl}/cp${this.cliente.id}.jpg`;
-      },
-      error => {}
-    );
   }
 }
